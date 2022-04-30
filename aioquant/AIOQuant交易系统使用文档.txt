@@ -1,0 +1,54 @@
+AIOQuant交易系统
+
+=========================
+0. GitLab
+	https://git.mmv587.xyz/
+	fuwj
+	ztuGwOxhcp+de8Oj
+	
+	
+	## Install RabbitMQ signing key
+curl -fsSL https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc | sudo apt-key add -
+
+## Install apt HTTPS transport
+sudo apt-get install apt-transport-https
+
+## Add Bintray repositories that provision latest RabbitMQ and Erlang 23.x releases
+sudo tee /etc/apt/sources.list.d/bintray.rabbitmq.list <<EOF
+deb https://dl.bintray.com/rabbitmq-erlang/debian bionic erlang
+deb https://dl.bintray.com/rabbitmq/debian bionic main
+EOF
+
+## Update package indices
+sudo apt-get update -y
+
+## Install rabbitmq-server and its dependencies
+sudo apt-get install rabbitmq-server -y --fix-missing
+
+	
+	
+
+1. 安装python
+	python 3.5.3 或以上版本(建议安装3.6版本)
+
+2. 安装相关依赖包
+	pip3 install aioamqp==0.14.0 aiohttp==3.6.2 motor==2.0.0
+
+3. 安装并配置RabbitMQ
+	参考文档: https://git.mmv587.xyz/Documents/AIOQuantDocs/blob/master/others/rabbitmq_deploy.md
+
+4. 安装 aioquant SDK
+	git clone https://git.mmv587.xyz/FuWanJin/aioquant.git
+	cd aioquant
+	python setup.py build
+	python setup.py install
+
+5. 使用 Market 行情系统
+	git clone https://git.mmv587.xyz/FuWanJin/Market.git
+	cd Market
+	vim config.json  # 编辑配置文件
+	python src/main.py config.json
+
+6. 相关文档:
+	AIOQuant使用文档: https://git.mmv587.xyz/Documents/AIOQuantDocs#aioquant-使用文档
+	系列视频课程: https://space.bilibili.com/479971824
